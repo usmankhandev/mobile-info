@@ -4,6 +4,7 @@ import Dashboard from './components/admin/dashboard/dashboard';
 import AdminDashboard from './components/administration/dashboard';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+
 class App extends React.Component {
 	render() {
 		return (

@@ -19,6 +19,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import AddCategory from './addCategory';
 import ListofAllCategories from './listofcategories';
+import AddMobile from './addMobile';
+import AllMobiles from './mobile';
+import AddNews from './addNews';
+import News from './news';
+
 
 const themes = createMuiTheme({
 	palette: {
@@ -114,16 +119,16 @@ class ResponsiveDrawer extends React.Component {
 			);
 		}
 		if (this.state.selectedItem === 'AddMobile') {
-			return <div>Add Mobile</div>;
+			return <div><AddMobile/></div>;
 		}
 		if (this.state.selectedItem === 'Mobiles') {
-			return <div>List of Mobiles respective to category</div>;
+			return <div><AllMobiles /></div>;
 		}
 		if (this.state.selectedItem === 'AddNews') {
-			return <div>Add News</div>;
+			return <div><AddNews/></div>;
 		}
 		if (this.state.selectedItem === 'News') {
-			return <div>List of News Today</div>;
+			return <div><News/></div>;
 		}
 		if (this.state.selectedItem === 'AllReviews') {
 			return <div>List of all reviews given by visitor</div>;
