@@ -17,23 +17,24 @@ class Login extends React.Component {
 		return (
 			<Grid container direction="column" alignItems="center" style={{ marginTop: 100 }}>
 				<Typography component="h5" variant="h3">
-					Log In
+					Recovery Password
 				</Typography>
 				<Grid item style={{ width: 300 }}>
 					<input type="text" placeholder="E_mail" fullWidth margin="normal" />
 					<input type="password" placeholder="Password" fullWidth margin="normal" />
+					<input type="password" placeholder="Confirm Password" fullWidth margin="normal" />
 					<button
 						margin="normal"
 						style={{ width: 300, height: 30, fontWeight: 'bold', fontSize: 20 }}
 						type="submit"
 					>
-						Sign IN
+						Resest
 					</button>
 					<br />
-					<a>
+					{/* <a>
 						<label style={{ cursor: 'pointer' }}>Not Registered?</label>
 						<label style={{ cursor: 'pointer', color: 'green' }}> Create an account</label>
-					</a>
+					</a> */}
 				</Grid>
 			</Grid>
 		);

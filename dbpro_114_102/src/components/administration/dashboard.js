@@ -24,7 +24,6 @@ import AllMobiles from './mobile';
 import AddNews from './addNews';
 import News from './news';
 
-
 const themes = createMuiTheme({
 	palette: {
 		primary: {
@@ -119,16 +118,32 @@ class ResponsiveDrawer extends React.Component {
 			);
 		}
 		if (this.state.selectedItem === 'AddMobile') {
-			return <div><AddMobile/></div>;
+			return (
+				<div>
+					<AddMobile />
+				</div>
+			);
 		}
 		if (this.state.selectedItem === 'Mobiles') {
-			return <div><AllMobiles /></div>;
+			return (
+				<div>
+					<AllMobiles />
+				</div>
+			);
 		}
 		if (this.state.selectedItem === 'AddNews') {
-			return <div><AddNews/></div>;
+			return (
+				<div>
+					<AddNews />
+				</div>
+			);
 		}
 		if (this.state.selectedItem === 'News') {
-			return <div><News/></div>;
+			return (
+				<div>
+					<News />
+				</div>
+			);
 		}
 		if (this.state.selectedItem === 'AllReviews') {
 			return <div>List of all reviews given by visitor</div>;
@@ -155,6 +170,7 @@ class ResponsiveDrawer extends React.Component {
 						'News',
 						'AllReviews',
 						'Responses',
+						'Logout',
 					].map((text, index) => (
 						<ListItem button key={text} onClick={() => this.handleListItem(text)}>
 							<ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
