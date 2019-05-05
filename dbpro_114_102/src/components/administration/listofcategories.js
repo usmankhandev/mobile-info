@@ -1,95 +1,135 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
+import AddIcon from '@material-ui/icons/Add';
+import { connect } from 'react-redux';
+import { FetchCategories } from '../../actions/categoryActions';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 
-const CustomTableCell = withStyles(theme => ({
-	head: {
-		backgroundColor: theme.palette.common.black,
-		color: theme.palette.common.white,
-	},
-	body: {
-		fontSize: 14,
-	},
-}))(TableCell);
+class ListOfAllCategories extends React.Component {
+	componentWillMount() {
+		this.props.FetchCategories();
+	}
 
-const styles = theme => ({
-	root: {
-		width: '100%',
-		marginTop: theme.spacing.unit * 3,
-		overflowX: 'auto',
-	},
-	table: {
-		minWidth: 700,
-	},
-	row: {
-		'&:nth-of-type(odd)': {
-			backgroundColor: theme.palette.background.default,
-		},
-	},
-});
+	render() {
+		const categoriesList = this.props.categories.map(category => (
+			<div>
+				{/* <h1>{category.categoryName}</h1> */}
 
-let id = 0;
-function createData(CategoryName, NumberOfModelsAdded) {
-	id += 1;
-	return { id, CategoryName, NumberOfModelsAdded };
-}
+				<table>
+					<thead>
+						<tr>
+							<th>Category Name</th>
+							<th>Edit</th>
+							<th>Delete</th>
+							<th>Add Mobile</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr key={category.categoryId}>
+							<td>{category.categoryName}</td>
+							<td>
+								<IconButton aria-label="Edit">
+									<EditIcon />
+								</IconButton>
+							</td>
+							<td>
+								<IconButton aria-label="Delete">
+									<DeleteIcon />
+								</IconButton>
+							</td>
+							<td>
+								<Button variant="contained">Add Mobile</Button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		));
+		return (
+			<div className="all-categories">{categoriesList}</div>
 
-const rows = [createData('Frozen yoghurt', 159), createData('Ice cream sandwich', 237), createData('Eclair', 262)];
+			/* // <div className="all-mobiles">
+				// <table>
+			// 		<thead>
+			// 			<tr>
+			// 				<th>Category Name</th>
+			// 				<th>Edit</th>
+			// 				<th>Delete</th>
+			// 				<th>Add Mobile</th>
+			// 			</tr>
+			// 		</thead>
 
-function ListOfAllCategories(props) {
-	const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount } = props;
+			// 		<tbody>
+			// 			<tr>
+			// 				<td>Sumsung</td>
+			// 				<td>
+			// 					<IconButton aria-label="Edit">
+			// 						<EditIcon />
+			// 					</IconButton>
+			// 				</td>
+			// 				<td>
+			// 					<IconButton aria-label="Delete">
+			// 						<DeleteIcon />
+			// 					</IconButton>
+			// 				</td>
+			// 				<td>
+			// 					<Button variant="contained">Add Mobile</Button>
+			// 				</td>
+			// 			</tr>
 
-	return (
-		<Paper className={classes.root}>
-			<Table className={classes.table}>
-				<TableHead>
-					<TableRow>
-						<CustomTableCell>CategoryName</CustomTableCell>
-						<CustomTableCell numeric>NumberOfModelsAdded</CustomTableCell>
-						<CustomTableCell numeric>Actions</CustomTableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{rows.map(row => {
-						return (
-							<TableRow className={classes.row} key={row.id}>
-								<CustomTableCell>{row.CategoryName}</CustomTableCell>
-								<CustomTableCell numeric>{row.NumberOfModelsAdded}</CustomTableCell>
-								<CustomTableCell padding="checkbox">
-									<IconButton aria-label="Delete">
-										<DeleteIcon />
-									</IconButton>
-									<IconButton aria-label="Edit">
-										<EditIcon />
-									</IconButton>
-									<IconButton aria-label="Add">
-										<AddIcon />
-										Add Model
-									</IconButton>
-								</CustomTableCell>
-							</TableRow>
-						);
-					})}
-				</TableBody>
-			</Table>
-		</Paper>
-	);
+			// 			<tr>
+			// 				<td>Sumsung</td>
+			// 				<td>
+			// 					<IconButton aria-label="Edit">
+			// 						<EditIcon />
+			// 					</IconButton>
+			// 				</td>
+			// 				<td>
+			// 					<IconButton aria-label="Delete">
+			// 						<DeleteIcon />
+			// 					</IconButton>
+			// 				</td>
+			// 				<td>
+			// 					<Button variant="contained">Add Mobile</Button>
+			// 				</td>
+			// 			</tr>
+			// 			<tr>
+			// 				{/* <tr> */
+			// 				<td>Sumsung</td>
+			// 				<td>
+			// 					<IconButton aria-label="Edit">
+			// 						<EditIcon />
+			// 					</IconButton>
+			// 				</td>
+			// 				<td>
+			// 					<IconButton aria-label="Delete">
+			// 						<DeleteIcon />
+			// 					</IconButton>
+			// 				</td>
+			// 				<td>
+			// 					<Button variant="contained">Add Mobile</Button>
+			// 				</td>
+			// 			</tr>
+			// 		</tbody>
+			// 	</table> */}
+			// </div>
+		);
+	}
 }
 
 ListOfAllCategories.propTypes = {
-	classes: PropTypes.object.isRequired,
+	FetchCategories: PropTypes.func.isRequired,
+	categories: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(ListOfAllCategories);
+const mapStateToProps = state => ({
+	categories: state.categories.categories,
+});
+
+export default connect(
+	mapStateToProps,
+	{ FetchCategories }
+)(ListOfAllCategories);

@@ -3,8 +3,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const sql = require('mssql');
 
-app.use(bodyParser.json());
 const app = express();
+app.use(bodyParser.json());
 app.use(cors());
 let config = {
 	user: 'sa',

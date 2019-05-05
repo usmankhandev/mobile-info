@@ -1,4 +1,4 @@
-import { FETCH_ADMIN } from '../actions/types';
+import { LOGIN_ADMIN } from '../actions/types';
 
 const initialState = {
 	// students: [],
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case FETCH_ADMIN:
+		case LOGIN_ADMIN:
 			console.log('reducer is working correctly');
 			return {
 				...state,

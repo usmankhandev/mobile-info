@@ -4,5 +4,5 @@ import categoryReducer from './categoryReducer';
 
 export default combineReducers({
 	admin: adminReducer,
-	category: categoryReducer,
+	categories: categoryReducer,
 });

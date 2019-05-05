@@ -33,25 +33,25 @@ export function AddCategory(categoryData) {
 export function FetchCategories() {
 	return function(dispatch) {
 		console.log('fetching all categories');
-		fetch('http://localhost/api/categories', {
+		fetch('http://localhost:5000/api/categories', {
 			method: 'GET',
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json',
 			},
-        });
-        .then(response => {
-            console.log('response of fetchcategories');
-            return response.json();
-        })
-        .then(data => {
-            dispatch({
-                type: FETCH_CATEGORIES,
-                payload: data.recordset,
-            });
-        })
-        .catch(err => {
-            console.error(err);
-        });
+		})
+			.then(response => {
+				console.log('response of fetchcategories');
+				return response.json();
+			})
+			.then(data => {
+				dispatch({
+					type: FETCH_CATEGORIES,
+					payload: data.recordset,
+				});
+			})
+			.catch(err => {
+				console.error(err);
+			});
 	};
 }
